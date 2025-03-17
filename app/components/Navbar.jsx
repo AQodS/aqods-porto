@@ -2,7 +2,7 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setIsScroll] = useState(false);
   const sideMenuRef = useRef();
   const openMenu = () => {
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 -z-10 translate-y-[-80%]">
+      <div className="fixed top-0 left-0 -z-10 translate-y-[-80%] dark:hidden">
         <Image alt="" className="w-full" src={assets.header_bg_color} />
       </div>
 
@@ -74,8 +74,8 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <button>
-            <Image alt="" className="w-6" src={assets.moon_icon} />
+          <button onClick={()=> setIsDarkMode(!isDarkMode)}>
+            <Image alt="" className="w-6" src={isDarkMode ? assets.sun_icon : assets.moon_icon} />
           </button>
 
           <a
